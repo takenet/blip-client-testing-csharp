@@ -32,7 +32,7 @@ namespace Take.Blip.Client.Testing
             });
         }
 
-        public static async Task<Message> DeliverIncomingMessageAsnyc(this TestHost host, Node from, string plainContent)
+        public static async Task<Message> DeliverIncomingMessageAsync(this TestHost host, Node from, string plainContent)
         {
             var message = new Message
             {
@@ -55,7 +55,7 @@ namespace Take.Blip.Client.Testing
         public static async Task<IEnumerable<Message>> DeliverMessageAndConsumeResponseAsnyc(this TestHost host, Node from, string plainContent)
         {
             var result = new Message[2];
-            result[0] = await host.DeliverIncomingMessageAsnyc(from, plainContent);
+            result[0] = await host.DeliverIncomingMessageAsync(from, plainContent);
             await host.WaitForConsumedAsync();
             result[1] = await host.RetrieveOutgoingMessageAsync();
             return result;
