@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Take.Blip.Client.Testing</id>
+    <version>$version$</version>
+    <title>Blip SDK Test helper</title>
+    <authors>takenet</authors>
+    <owners>takenet</owners>
+    <projectUrl>http://take.net</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A testing host for applications using BLiP SDK to ease integration testing. This host fakes the server incoming and outgoing message transport so you can control the delivery of messages to your chatbot and inspect whici messages are produced by it.</description>
+    <copyright>Copyright © 2017 Curupira S/A</copyright>
+    <tags>blip messagingHub</tags>
+    <dependencies>
+      <dependency id="Takenet.MessagingHub.Client" version="0.4.114" />
+    </dependencies>
+  </metadata>
+</package>
