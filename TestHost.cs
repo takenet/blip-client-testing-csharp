@@ -85,7 +85,7 @@ namespace Take.Blip.Client.Testing
         /// (default: 1s)
         /// </summary>
         public Task<Message> RetrieveOutgoingMessageAsync()
-            => _onDemandClientChannel.OutgoingMessages.ReceiveAsync(_messageWaitTimeout);
+            => RetrieveOutgoingMessageAsync(_messageWaitTimeout);
 
         /// <summary>
         /// Retrieve next bot generated message, using specified timeout
