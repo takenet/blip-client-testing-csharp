@@ -44,12 +44,21 @@ namespace Take.Blip.Client.Testing
             return message;
         }
 
-        public static async Task WaitForConsumedAsync(this TestHost host)
+        public static async Task WaitForConsumedAsync(this TestHost host, string messageId = null)
         {
             var notification = await host.RetrieveOutgoingNotificationAsync();
-            if (notification.Event != Event.Received) throw new InvalidOperationException($"Expected Received notification, but got {notification.Event}");
+            if (notification.Event != Event.Received &&
+                (messageId == null || notification.Id == messageId))
+            {
+                throw new InvalidOperationException($"Expected Received notification, but got {notification.Event}");
+            }
+
             notification = await host.RetrieveOutgoingNotificationAsync();
-            if (notification.Event != Event.Consumed) throw new InvalidOperationException($"Expected Consumed notification, but got {notification.Event}");
+            if (notification.Event != Event.Consumed &&
+                (messageId == null || notification.Id == messageId))
+            {
+                throw new InvalidOperationException($"Expected Consumed notification, but got {notification.Event}");
+            };
         }
 
         public static async Task<IEnumerable<Message>> DeliverMessageAndConsumeResponseAsnyc(this TestHost host, Node from, string plainContent)
