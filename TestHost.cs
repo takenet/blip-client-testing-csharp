@@ -13,13 +13,27 @@ namespace Take.Blip.Client.Testing
 {
     public class TestHost
     {
+        public static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(1);
+
+        readonly TimeSpan _messageWaitTimeout;
+        readonly Assembly _assembly;
+
         InternalOnDemandClientChannel _onDemandClientChannel;
-        Assembly _assembly;
         IMessagingHubClient _client;
 
+        /// <summary>
+        /// In-memory host for a Blip SDK chatbot implementation
+        /// </summary>
+        /// <param name="assembly">The assembly for the full chatbot implementation</param>
         public TestHost(Assembly assembly)
+            : this(assembly, DefaultTimeout)
+
+        { }
+
+        public TestHost(Assembly assembly, TimeSpan messageWaitTimeout)
         {
             _assembly = assembly;
+            _messageWaitTimeout = messageWaitTimeout;
         }
 
         public async Task<IServiceContainer> StartAsync(Action<IServiceContainer> serviceOverrides = null)
@@ -54,14 +68,39 @@ namespace Take.Blip.Client.Testing
             return _client?.StopAsync();
         }
 
+        /// <summary>
+        /// Helper to indicate successfull initalization
+        /// </summary>
         public bool IsListening
             => _client != null ? _client.Listening : false;
 
+        /// <summary>
+        /// Deliver a message to be processed by the chatbot
+        /// </summary>
         public Task DeliverIncomingMessageAsync(Message message)
             => _onDemandClientChannel.IncomingMessages.SendAsync(message);
 
+        /// <summary>
+        /// Retrieve next chatbot generated message, using current message wait timeout
+        /// (default: 1s)
+        /// </summary>
         public Task<Message> RetrieveOutgoingMessageAsync()
-            => _onDemandClientChannel.OutgoingMessages.ReceiveAsync();
+            => _onDemandClientChannel.OutgoingMessages.ReceiveAsync(_messageWaitTimeout);
+
+        /// <summary>
+        /// Retrieve next bot generated message, using specified timeout
+        /// </summary>
+        public async Task<Message> RetrieveOutgoingMessageAsync(TimeSpan timeout)
+        {
+            try
+            {
+                return await _onDemandClientChannel.OutgoingMessages.ReceiveAsync(timeout);
+            }
+            catch (OperationCanceledException)
+            {
+                return null;
+            }
+        }
 
         public Task<Notification> RetrieveOutgoingNotificationAsync()
             => _onDemandClientChannel.OutgoingNotifications.ReceiveAsync();
