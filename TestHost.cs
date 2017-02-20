@@ -96,7 +96,7 @@ namespace Take.Blip.Client.Testing
             {
                 return await _onDemandClientChannel.OutgoingMessages.ReceiveAsync(timeout);
             }
-            catch (OperationCanceledException)
+            catch (TimeoutException)
             {
                 return null;
             }
