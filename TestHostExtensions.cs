@@ -23,7 +23,7 @@ namespace Take.Blip.Client.Testing
             {
                 foreach (var registration in implementationOverrides
                                                 .SelectMany(implementation => implementation.GetType().GetInterfaces()
-                                                                                .Where(t => !t.Namespace.StartsWith("System"))
+                                                                                .Where(t => !t.Namespace.StartsWith("System") && !t.Namespace.StartsWith("Castle") && !t.Namespace.StartsWith("NSubstitute"))
                                                                                 .Select(i => new { Type = i, Implementation = implementation })))
                 {
 
