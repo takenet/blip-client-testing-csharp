@@ -77,6 +77,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dummy.cs" />
+    <Compile Include="Fakes\SingleNodeMemorySessionManager.cs" />
     <Compile Include="InternalMessagingHubConnection.cs" />
     <Compile Include="InternalOnDemandClientChannel.cs" />
     <Compile Include="InternalTypeResolver.cs" />
