@@ -44,6 +44,18 @@ namespace Take.Blip.Client.Testing
             return message;
         }
 
+        public static async Task<Message> DeliverIncomingMessageAsync(this TestHost host, Node from, Document content)
+        {
+            var message = new Message
+            {
+                Id = EnvelopeId.NewId(),
+                From = from,
+                Content = content
+            };
+            await host.DeliverIncomingMessageAsync(message);
+            return message;
+        }
+
         public static async Task WaitForConsumedAsync(this TestHost host, string messageId = null)
         {
             var notification = await host.RetrieveOutgoingNotificationAsync();
