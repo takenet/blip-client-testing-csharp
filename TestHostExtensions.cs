@@ -83,5 +83,22 @@ namespace Take.Blip.Client.Testing
 
         }
 
+        public static async Task<Message> GetResponseIgnoreFireAndForgetAsync(this TestHost host)
+        {
+            await host.WaitForConsumedAsync();
+            while (true)
+            {
+                var outgoing = await host.RetrieveOutgoingMessageAsync();
+                if (!string.IsNullOrWhiteSpace(outgoing.Id)) return outgoing;
+            }
+        }
+
+        public static async Task<T> GetContentResponseIgnoreFireAndForgetAsync<T>(this TestHost host)
+            where T : Document
+        {
+            var response = await host.GetResponseIgnoreFireAndForgetAsync();
+            return (T)response.Content;
+        }
+
     }
 }
