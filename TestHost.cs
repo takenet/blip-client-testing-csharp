@@ -16,6 +16,7 @@ namespace Take.Blip.Client.Testing
         public static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(1);
 
         readonly TimeSpan _messageWaitTimeout;
+        readonly TimeSpan _notificationWaitTimeout;
         readonly Assembly _assembly;
 
         InternalOnDemandClientChannel _onDemandClientChannel;
@@ -25,15 +26,11 @@ namespace Take.Blip.Client.Testing
         /// In-memory host for a Blip SDK chatbot implementation
         /// </summary>
         /// <param name="assembly">The assembly for the full chatbot implementation</param>
-        public TestHost(Assembly assembly)
-            : this(assembly, DefaultTimeout)
-
-        { }
-
-        public TestHost(Assembly assembly, TimeSpan messageWaitTimeout)
+        public TestHost(Assembly assembly, TimeSpan? messageWaitTimeout = null, TimeSpan? notificationWaitTimeout = null)
         {
             _assembly = assembly;
-            _messageWaitTimeout = messageWaitTimeout;
+            _messageWaitTimeout = messageWaitTimeout ?? DefaultTimeout;
+            _notificationWaitTimeout = notificationWaitTimeout ?? DefaultTimeout;
         }
 
         public async Task<IServiceContainer> StartAsync(Action<IServiceContainer> serviceOverrides = null)
@@ -102,8 +99,28 @@ namespace Take.Blip.Client.Testing
             }
         }
 
+        /// <summary>
+        /// Retrieve next chatbot generated notification, using current notification wait timeout
+        /// (default: 1s)
+        /// </summary>
         public Task<Notification> RetrieveOutgoingNotificationAsync()
-            => _onDemandClientChannel.OutgoingNotifications.ReceiveAsync();
+            => RetrieveOutgoingNotificationAsync(_notificationWaitTimeout);
+
+        /// <summary>
+        /// Retrieve next bot generated notification, using specified timeout
+        /// </summary>
+        public async Task<Notification> RetrieveOutgoingNotificationAsync(TimeSpan timeout)
+        {
+            try
+            {
+                return await _onDemandClientChannel.OutgoingNotifications.ReceiveAsync(timeout);
+            }
+            catch (TimeoutException)
+            {
+                return null;
+            }
+        }
+
 
         private IServiceContainer BuildServiceContainer(Application application, TypeResolver typeResolver)
         {
