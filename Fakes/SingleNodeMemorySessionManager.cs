@@ -1,6 +1,7 @@
 ﻿using Lime.Protocol;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,6 +35,11 @@ namespace Take.Blip.Client.Testing.Fakes
             return Task.CompletedTask;
         }
 
+        public Task<string> GetCultureAsync(Node node, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(CultureInfo.CurrentCulture.ToString());
+        }
+
         public Task<NavigationSession> GetSessionAsync(Node node, CancellationToken cancellationToken)
         {
             var result = new NavigationSession
@@ -51,6 +57,11 @@ namespace Take.Blip.Client.Testing.Fakes
         public Task RemoveVariableAsync(Node node, string key, CancellationToken cancellationToken)
         {
             _variables.Remove(key);
+            return Task.CompletedTask;
+        }
+
+        public Task SetCultureAsync(Node node, string culture, CancellationToken cancellationToken)
+        {
             return Task.CompletedTask;
         }
     }
