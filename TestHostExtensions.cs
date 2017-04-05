@@ -59,6 +59,7 @@ namespace Take.Blip.Client.Testing
         public static async Task WaitForConsumedAsync(this TestHost host, string messageId = null)
         {
             var notification = await host.RetrieveOutgoingNotificationAsync();
+            if (notification == null) throw new InvalidOperationException($"Expected Received notification, but could not get it within current timeout");
             if (notification.Event != Event.Received &&
                 (messageId == null || notification.Id == messageId))
             {
@@ -66,6 +67,7 @@ namespace Take.Blip.Client.Testing
             }
 
             notification = await host.RetrieveOutgoingNotificationAsync();
+            if (notification == null) throw new InvalidOperationException($"Expected Consumed notification, but could not get it within current timeout");
             if (notification.Event != Event.Consumed &&
                 (messageId == null || notification.Id == messageId))
             {
