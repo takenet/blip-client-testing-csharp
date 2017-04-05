@@ -13,7 +13,7 @@ namespace Take.Blip.Client.Testing
 {
     public class TestHost
     {
-        public static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(1);
+        public static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(5);
 
         readonly TimeSpan _messageWaitTimeout;
         readonly TimeSpan _notificationWaitTimeout;
