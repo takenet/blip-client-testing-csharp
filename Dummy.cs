@@ -23,5 +23,11 @@ namespace Take.Blip.Client.Testing
             id = id ?? $"55309{_rnd.Next(100000000).ToString()}";
             return Node.Parse($"{id}@take.io");
         }
+
+        public static Node BlipSdkUser(string id = null)
+        {
+            id = id ?? Guid.NewGuid().ToString();
+            return Node.Parse($"{id}_dummycom@0mn.io");
+        }
     }
 }
