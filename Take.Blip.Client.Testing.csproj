@@ -30,21 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Lime.Messaging, Version=0.7.122.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lime.Messaging.0.7.122\lib\net461\Lime.Messaging.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Lime.Messaging, Version=0.7.132.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lime.Messaging.0.7.132\lib\net461\Lime.Messaging.dll</HintPath>
     </Reference>
-    <Reference Include="Lime.Protocol, Version=0.7.122.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lime.Protocol.0.7.122\lib\net461\Lime.Protocol.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Lime.Protocol, Version=0.7.132.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lime.Protocol.0.7.132\lib\net461\Lime.Protocol.dll</HintPath>
     </Reference>
-    <Reference Include="Lime.Protocol.Serialization, Version=0.7.122.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lime.Protocol.Serialization.0.7.122\lib\net461\Lime.Protocol.Serialization.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Lime.Protocol.Serialization, Version=0.7.132.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lime.Protocol.Serialization.0.7.132\lib\net461\Lime.Protocol.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="Lime.Transport.Tcp, Version=0.7.122.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lime.Transport.Tcp.0.7.122\lib\net461\Lime.Transport.Tcp.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Lime.Transport.Tcp, Version=0.7.132.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lime.Transport.Tcp.0.7.132\lib\net461\Lime.Transport.Tcp.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -72,9 +68,8 @@
       <HintPath>..\packages\Takenet.Iris.Messaging.1.1.6\lib\net461\Takenet.Iris.Messaging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Takenet.MessagingHub.Client, Version=0.4.129.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Takenet.MessagingHub.Client.0.4.129\lib\net461\Takenet.MessagingHub.Client.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Takenet.MessagingHub.Client, Version=0.4.130.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Takenet.MessagingHub.Client.0.4.130\lib\net461\Takenet.MessagingHub.Client.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
