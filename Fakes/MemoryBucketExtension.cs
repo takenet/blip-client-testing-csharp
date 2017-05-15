@@ -1,5 +1,7 @@
-﻿using Lime.Protocol;
+﻿using Lime.Messaging.Contents;
+using Lime.Protocol;
 using System;
+using System.Linq;
 using System.Runtime.Caching;
 using System.Threading;
 using System.Threading.Tasks;
@@ -42,10 +44,29 @@ namespace Take.Blip.Client.Testing.Fakes
             return Task.CompletedTask;
         }
 
+        public Task<DocumentCollection> GetIdsAsync(int skip = 0, int take = 100, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var ids = _db
+                .Select(pair => pair.Key)
+                .Skip(skip)
+                .Take(take)
+                .ToArray();
+
+            var result = new DocumentCollection
+            {
+                ItemType = PlainText.MediaType,
+                Items = ids
+                    .Select(id => new PlainText { Text = id.ToString() })
+                    .ToArray(),
+                Total = ids.Length
+            };
+
+            return Task.FromResult(result);            
+        }
+
         public void Dispose()
         {
             _db.Dispose();
         }
-
     }
 }

@@ -64,12 +64,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Takenet.Iris.Messaging, Version=1.1.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Takenet.Iris.Messaging.1.1.6\lib\net461\Takenet.Iris.Messaging.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Takenet.Iris.Messaging, Version=1.1.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Takenet.Iris.Messaging.1.1.8\lib\net461\Takenet.Iris.Messaging.dll</HintPath>
     </Reference>
-    <Reference Include="Takenet.MessagingHub.Client, Version=0.4.130.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Takenet.MessagingHub.Client.0.4.130\lib\net461\Takenet.MessagingHub.Client.dll</HintPath>
+    <Reference Include="Takenet.MessagingHub.Client, Version=0.4.141.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Takenet.MessagingHub.Client.0.4.141\lib\net461\Takenet.MessagingHub.Client.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
