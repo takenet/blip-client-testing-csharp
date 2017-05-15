@@ -57,6 +57,7 @@ namespace Take.Blip.Client.Testing
 
             await _client.StartAsync().ConfigureAwait(false);
             await Bootstrapper.BuildStartupAsync(application, localServiceProvider, TypeResolver.Instance);
+            Identity = Identity.Parse($"{application.Identifier}@{application.Domain ?? "msging.net"}");
             return localServiceProvider;
         }
 
@@ -70,6 +71,8 @@ namespace Take.Blip.Client.Testing
         /// </summary>
         public bool IsListening
             => _client != null ? _client.Listening : false;
+
+        public Identity Identity { get; private set; }
 
         /// <summary>
         /// Deliver a message to be processed by the chatbot

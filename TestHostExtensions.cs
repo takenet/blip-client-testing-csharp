@@ -32,16 +32,9 @@ namespace Take.Blip.Client.Testing
             });
         }
 
-        public static async Task<Message> DeliverIncomingMessageAsync(this TestHost host, Node from, string plainContent)
+        public static Task<Message> DeliverIncomingMessageAsync(this TestHost host, Node from, string plainContent)
         {
-            var message = new Message
-            {
-                Id = EnvelopeId.NewId(),
-                From = from,
-                Content = new PlainText { Text = plainContent }
-            };
-            await host.DeliverIncomingMessageAsync(message);
-            return message;
+            return DeliverIncomingMessageAsync(host, from, (Document)new PlainText { Text = plainContent });
         }
 
         public static async Task<Message> DeliverIncomingMessageAsync(this TestHost host, Node from, Document content)
@@ -50,6 +43,7 @@ namespace Take.Blip.Client.Testing
             {
                 Id = EnvelopeId.NewId(),
                 From = from,
+                To = host.Identity.ToNode(),
                 Content = content
             };
             await host.DeliverIncomingMessageAsync(message);
