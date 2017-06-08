@@ -12,7 +12,10 @@
     <copyright>Copyright © 2017 Curupira S/A</copyright>
     <tags>blip messagingHub</tags>
     <dependencies>
-      <dependency id="Takenet.MessagingHub.Client" version="0.4.114" />
+      <dependency id="Takenet.MessagingHub.Client" version="0.4.141" />
     </dependencies>
   </metadata>
+  <files>
+    <file src="Readme.txt" target="" />
+  </files>
 </package>
