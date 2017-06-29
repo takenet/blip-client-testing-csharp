@@ -65,7 +65,9 @@ namespace Take.Blip.Client.Testing
             if (notification.Event != Event.Consumed &&
                 (messageId == null || notification.Id == messageId))
             {
-                throw new InvalidOperationException($"Expected Consumed notification, but got {notification.Event}");
+                var reason = "";
+                if (notification.Event == Event.Failed) reason = $" ({notification.Reason.Description})";
+                throw new InvalidOperationException($"Expected Consumed notification, but got {notification.Event}{reason}");
             };
         }
 
