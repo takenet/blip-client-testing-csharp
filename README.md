@@ -6,7 +6,13 @@ You could and should still create unit and/or integration tests for your chatbot
 
 - Create a new Library project and install your favorite unit test framework and companions (NUnit 3, Shoudly and NSubstitute are recommended).
 
-- Add a project reference to your Bot library
+- Install this library
+
+```
+Install-Package Take.Blip.Client.Testing
+```
+
+- Add a project reference to your chatbot project
 
 - Start a new test class and setup a TestHost like below:
 
