@@ -92,14 +92,7 @@ namespace Take.Blip.Client.Testing
         /// </summary>
         public async Task<Message> RetrieveOutgoingMessageAsync(TimeSpan timeout)
         {
-            try
-            {
-                return await _onDemandClientChannel.OutgoingMessages.ReceiveAsync(timeout);
-            }
-            catch (TimeoutException)
-            {
-                return null;
-            }
+            return await _onDemandClientChannel.OutgoingMessages.ReceiveAsync(timeout);
         }
 
         /// <summary>
@@ -114,14 +107,7 @@ namespace Take.Blip.Client.Testing
         /// </summary>
         public async Task<Notification> RetrieveOutgoingNotificationAsync(TimeSpan timeout)
         {
-            try
-            {
-                return await _onDemandClientChannel.OutgoingNotifications.ReceiveAsync(timeout);
-            }
-            catch (TimeoutException)
-            {
-                return null;
-            }
+            return await _onDemandClientChannel.OutgoingNotifications.ReceiveAsync(timeout);
         }
 
 
