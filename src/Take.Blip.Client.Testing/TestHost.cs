@@ -90,9 +90,9 @@ namespace Take.Blip.Client.Testing
         /// <summary>
         /// Retrieve next bot generated message, using specified timeout
         /// </summary>
-        public async Task<Message> RetrieveOutgoingMessageAsync(TimeSpan timeout)
+        public Task<Message> RetrieveOutgoingMessageAsync(TimeSpan timeout)
         {
-            return await _onDemandClientChannel.OutgoingMessages.ReceiveAsync(timeout);
+            return _onDemandClientChannel.OutgoingMessages.ReceiveAsync(timeout);
         }
 
         /// <summary>
@@ -105,9 +105,9 @@ namespace Take.Blip.Client.Testing
         /// <summary>
         /// Retrieve next bot generated notification, using specified timeout
         /// </summary>
-        public async Task<Notification> RetrieveOutgoingNotificationAsync(TimeSpan timeout)
+        public Task<Notification> RetrieveOutgoingNotificationAsync(TimeSpan timeout)
         {
-            return await _onDemandClientChannel.OutgoingNotifications.ReceiveAsync(timeout);
+            return _onDemandClientChannel.OutgoingNotifications.ReceiveAsync(timeout);
         }
 
 
