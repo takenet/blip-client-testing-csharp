@@ -6,7 +6,6 @@ using System.Runtime.Caching;
 using System.Threading;
 using System.Threading.Tasks;
 using Takenet.MessagingHub.Client.Extensions.Bucket;
-using Lime.Protocol.Network;
 
 namespace Take.Blip.Client.Testing.Fakes
 {
@@ -28,8 +27,7 @@ namespace Take.Blip.Client.Testing.Fakes
         public Task<T> GetAsync<T>(string id, CancellationToken cancellationToken = default(CancellationToken)) 
             where T : Document
         {
-            var value = (T)_db.Get(id) ?? throw new LimeException(new Reason { Code = ReasonCodes.COMMAND_RESOURCE_NOT_FOUND, Description = "Resource not found (simulated)" });
-            return Task.FromResult(value);
+            return Task.FromResult((T)_db.Get(id));
         }
 
         public Task SetAsync<T>(string id, T document, TimeSpan expiration = default(TimeSpan), CancellationToken cancellationToken = default(CancellationToken)) 
