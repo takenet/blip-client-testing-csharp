@@ -81,9 +81,9 @@ namespace Take.Blip.Client.Testing
 
         }
 
-        public static async Task<Message> GetResponseIgnoreFireAndForgetAsync(this TestHost host)
+        public static async Task<Message> GetResponseIgnoreFireAndForgetAsync(this TestHost host, bool waitForConsumed = true)
         {
-            await host.WaitForConsumedAsync();
+            if (waitForConsumed) await host.WaitForConsumedAsync();
             while (true)
             {
                 var outgoing = await host.RetrieveOutgoingMessageAsync();
@@ -91,10 +91,10 @@ namespace Take.Blip.Client.Testing
             }
         }
 
-        public static async Task<T> GetContentResponseIgnoreFireAndForgetAsync<T>(this TestHost host)
+        public static async Task<T> GetContentResponseIgnoreFireAndForgetAsync<T>(this TestHost host, bool waitForConsumed = true)
             where T : Document
         {
-            var response = await host.GetResponseIgnoreFireAndForgetAsync();
+            var response = await host.GetResponseIgnoreFireAndForgetAsync(waitForConsumed);
             return (T)response.Content;
         }
 
