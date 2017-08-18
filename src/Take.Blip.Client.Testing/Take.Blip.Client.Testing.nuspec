@@ -8,7 +8,7 @@
     <owners>takenet</owners>
     <projectUrl>http://take.net</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>A testing host for applications using BLiP SDK to ease integration testing. This host fakes the server incoming and outgoing message transport so you can control the delivery of messages to your chatbot and inspect whici messages are produced by it.</description>
+    <description>A testing host for applications using BLiP SDK to ease integration testing. This host fakes the server incoming and outgoing message transport so you can control the delivery of messages to your chatbot and inspect which messages are produced by it.</description>
     <copyright>Copyright © 2017 Curupira S/A</copyright>
     <tags>blip messagingHub</tags>
     <dependencies>
