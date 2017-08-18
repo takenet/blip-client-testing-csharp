@@ -2,9 +2,9 @@
 
 ** How to start **
 
-- Create a new Library project and install your favorite unit test framework and companions (NUnit 3, Shoudly and NSubstitute are recommended).
+- Create a new library project and install your favorite unit test framework and companions (NUnit 3, Shoudly and NSubstitute are recommended).
 
-- Add a project reference to your Bot library
+- Add to the new test library project a project reference to your chatbot library (or project) 
 
 - Start a new test class and setup a TestHost like below:
 
@@ -18,7 +18,7 @@ var bot = new TestHost(typeof(<SomeClassInsideBotProject).Assembly); // This con
 Bucket = new MemoryBucketExtension();
 await bot.AddRegistrationAndStartAsync(Bucket);
 
--Deliver a message to your bot, faking an user interaction.
+- Deliver a message to your bot, faking an user interaction.
 
 // Dummy is a helper class to create formatted Lime Nodes as Blip produces
 var messengerUser = Dummy.MessengerUser();
